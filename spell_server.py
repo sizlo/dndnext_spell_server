@@ -31,6 +31,18 @@ class DndSpellsWeb(SimpleHTTPRequestHandler):
 
         SimpleHTTPRequestHandler.__init__(self, request, client_address, server)
 
+    def getSpellNamesContainer(self):
+        invisibleText = '<div id="names" style="display:none">'
+        for spell in self.json_data:
+            invisibleText = invisibleText + spell['title'] + ';'
+        invisibleText = invisibleText[0:-1]
+        invisibleText = invisibleText + '</div>'
+        return invisibleText;
+
+    def getMatchesContainer(self):
+        matchesContainer = '<div id="matches"></div>'
+        return matchesContainer
+
     def send_head(self):
 
         body = None
@@ -67,7 +79,7 @@ class DndSpellsWeb(SimpleHTTPRequestHandler):
         response = self.template_data
         cut_from = response.index(u"<main>")
         cut_to = response.index(u"</main>")
-        return response[0:cut_from-1] + response[cut_to+8:]
+        return response[0:cut_from-1] + self.getSpellNamesContainer() + self.getMatchesContainer() + response[cut_to+8:]
 
     def parse_spell(self, spell):
         spell_title = u''
@@ -127,7 +139,7 @@ class DndSpellsWeb(SimpleHTTPRequestHandler):
         response = self.template_data
         cut_from = response.index(u"<main>")
         cut_to = response.index(u"</main>")
-        return response[0:cut_from+6] + spell_content + response[cut_to:]
+        return response[0:cut_from+6] + self.getSpellNamesContainer() + self.getMatchesContainer() + spell_content + response[cut_to:]
 
 
 # Server
