@@ -45,7 +45,7 @@ class DndSpellsWeb(SimpleHTTPRequestHandler):
             if spell_end>1:
                 spell_name = unquote_plus(self.path[1:spell_end])
                 for spell in self.json_data:
-                    if spell['title']==spell_name:
+                    if spell['title'].lower() == spell_name.lower():
                         body = self.parse_spell(spell)
                     elif spell['title'].lower()==spell_name:
                         body = self.parse_spell(spell)
