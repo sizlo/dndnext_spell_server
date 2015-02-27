@@ -1,5 +1,12 @@
+function getSpellUrl(spellName)
+{
+  // Replace any "/"s with the url code equivalent "%2F"
+  return spellName.replace("/", "%2F");
+}
+
 function go_to_spell() {
-	location.href = 'http://localhost:8080/' + $("#spell_name_txt").val() + '/';
+  spellUrl = getSpellUrl($("#spell_name_txt").val());
+	location.href = 'http://localhost:8080/' + spellUrl + '/';
 }
 $("#get_spell_btn").click(function() {
 	go_to_spell();
@@ -29,7 +36,8 @@ function populateMatches() {
   for (i = 0; i < spellNames.length; i++) {
     lowerName = spellNames[i].toLowerCase();
     if (lowerName.indexOf(lowerSearchTerm) != -1) {
-      linkLocation = "http://localhost:8080/" + spellNames[i] + "/"
+      spellUrl = getSpellUrl(spellNames[i]);
+      linkLocation = "http://localhost:8080/" + spellUrl + "/"
       spellLink = '<a href="' + linkLocation + '">' + spellNames[i] + '</a>'
       matchesContainer.innerHTML += spellLink + "<br>";
     }
