@@ -6,7 +6,7 @@ function getSpellUrl(spellName)
 
 function go_to_spell() {
   spellUrl = getSpellUrl($("#spell_name_txt").val());
-	location.href = 'http://localhost:8080/' + spellUrl + '/';
+	location.href = window.location.origin + '/' + spellUrl + '/';
 }
 $("#get_spell_btn").click(function() {
 	go_to_spell();
@@ -37,7 +37,7 @@ function populateMatches() {
     lowerName = spellNames[i].toLowerCase();
     if (lowerName.indexOf(lowerSearchTerm) != -1) {
       spellUrl = getSpellUrl(spellNames[i]);
-      linkLocation = "http://localhost:8080/" + spellUrl + "/"
+      linkLocation = window.location.origin + "/" + spellUrl + "/"
       spellLink = '<a href="' + linkLocation + '">' + spellNames[i] + '</a>'
       matchesContainer.innerHTML += spellLink + "<br>";
     }
