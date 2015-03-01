@@ -6,16 +6,16 @@ function getSpellUrl(spellName)
 
 function go_to_spell() {
   spellUrl = getSpellUrl($("#spell_name_txt").val());
-	location.href = window.location.origin + '/' + spellUrl + '/';
+  location.href = window.location.origin + '/' + spellUrl + '/';
 }
 $("#get_spell_btn").click(function() {
-	go_to_spell();
+  go_to_spell();
 });
 $("#spell_name_txt").keypress(function(event) {
-    if (event.which == 13) {
-        event.preventDefault();
-        go_to_spell();
-    }
+  if (event.which == 13) {
+    event.preventDefault();
+    go_to_spell();
+  }
 });
 
 spellNames = document.getElementById("names").innerHTML.split(";");
