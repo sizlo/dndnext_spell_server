@@ -34,7 +34,7 @@ class DndSpellsWeb(SimpleHTTPRequestHandler):
     def getSpellNamesContainer(self):
         invisibleText = '<div id="names" style="display:none">'
         for spell in self.json_data:
-            invisibleText = invisibleText + spell['title'] + ';'
+            invisibleText = invisibleText + spell['title'] + '!'
         invisibleText = invisibleText[0:-1]
         invisibleText = invisibleText + '</div>'
         return invisibleText;

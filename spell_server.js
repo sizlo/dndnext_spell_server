@@ -18,7 +18,7 @@ $("#spell_name_txt").keypress(function(event) {
   }
 });
 
-spellNames = document.getElementById("names").innerHTML.split(";");
+spellNames = document.getElementById("names").innerHTML.split("!");
 
 function populateMatches() {
   // Clear the contents
